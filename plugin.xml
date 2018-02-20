@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            category="GBPlugin.GBLib"
+            class="org.green4590.gbplugin.wizards.file.NewSubsystemWizard"
+            icon="Resources/guy.jpg"
+            id="GBPlugin.SubsystemWizard"
+            name="Subsystem">
+      </wizard>
+      <category
+            id="GBPlugin.GBLib"
+            name="GBLib Robot Kill Me Please">
+      </category>
+   </extension>
+
+</plugin>
