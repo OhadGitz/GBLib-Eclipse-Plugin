@@ -1,6 +1,5 @@
 package org.green4590.gbplugin.wizards.pages.file;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,6 +19,7 @@ public class NewSubsystemWizardPage extends WizardPage implements INewFileWizard
 	Text classNameTextbox;
 	Label packageName;
 	Text packageNameTextbox;
+	String currentPackage = "default";
 
 	public NewSubsystemWizardPage() {
 		super("New Subsystem Page");
@@ -46,7 +46,7 @@ public class NewSubsystemWizardPage extends WizardPage implements INewFileWizard
 		packageName.setLayoutData(new GridData());
 
 		packageNameTextbox = new Text(container, SWT.BORDER);
-		//packageNameTextbox.setText("src.");
+		packageNameTextbox.setText(currentPackage);
 		packageNameTextbox.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 		setControl(container);
 	}
@@ -67,6 +67,11 @@ public class NewSubsystemWizardPage extends WizardPage implements INewFileWizard
 		ret.put("class", getFileName());
 		ret.put("package", getPackage());
 		return ret;
+	}
+
+	@Override
+	public void setPackageName(String path) {
+		currentPackage = path;
 	}
 
 }

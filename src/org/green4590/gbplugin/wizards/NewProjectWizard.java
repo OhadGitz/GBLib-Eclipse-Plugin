@@ -12,6 +12,8 @@ public class NewProjectWizard extends Wizard implements INewWizard {
 	private INewProjectWizardPage page;
 	private ProjectType projectType;
 	
+	//TODO doFinish, project properties creation
+	
 	@Override
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		

@@ -39,7 +39,7 @@ public class GBLog {
 	 */
 	private static void setupLogger() {
 		String logFile = FileUtils.createFile(FileUtils.DIRS.get("logs") + getFormattedDate() + ".log").toString();
-
+		logger.setLevel(Level.ALL);
 		try {
 			logger.addHandler(new FileHandler(logFile));
 

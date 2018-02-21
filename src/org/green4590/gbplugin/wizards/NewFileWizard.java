@@ -34,6 +34,8 @@ public class NewFileWizard extends Wizard implements INewWizard {
 	private String templateFile;
 	private String name;
 	
+	private String currentPackage;
+	
 	/**
 	 * 
 	 * @param name The name of the wizard.
@@ -51,22 +53,47 @@ public class NewFileWizard extends Wizard implements INewWizard {
 		
 		// save the IProject
 		
-		GBLog.getLogger().fine("Selection is " + selection.getFirstElement());
+		/*
+		 * class org.eclipse.jdt.internal.core.PackageFragment
+class org.eclipse.core.internal.resources.Project
+class org.eclipse.jdt.internal.core.CompilationUnit
+
+class org.eclipse.jdt.internal.core.PackageFragmentRoot
+		 */
+		
+		//TODO auto package generation
+		
+		GBLog.getLogger().fine("Selection is " + selection.getFirstElement() + " from type  ");
 
 		Object element = selection.getFirstElement();
+		
+		System.out.println(element.getClass());
+		
 		if (element == null) {
 			MessageDialog.openError(new Shell(), "PLZ Select",
 					"Plz select an element so i wont get NullPointerException");
 		}
 		if (element instanceof IResource) {
-			project = ((IResource) element).getProject();
+			IResource thing = (IResource) element;
+			project = thing.getProject();
+			currentPackage = ((IResource) element).getProjectRelativePath().toString();
+			
 		} else if (element instanceof IPackageFragment) {
-			project = ((IPackageFragment) element).getJavaProject().getProject();
+			IPackageFragment thing = (IPackageFragment) element;
+			project = thing.getJavaProject().getProject();
+			currentPackage = thing.getPath().toString();
 		} else if (element instanceof IPackageFragmentRoot) {
-			project = ((IPackageFragmentRoot) element).getJavaProject().getProject();
+			// oooh thysti lil thang
+			IPackageFragmentRoot thang = (IPackageFragmentRoot) element;
+			project = thang.getJavaProject().getProject();
+			currentPackage = thang.getPath().toString();
 		} else if (element instanceof ICompilationUnit) {
-			project = ((ICompilationUnit) element).getJavaProject().getProject();
+			ICompilationUnit thang = (ICompilationUnit) element;
+			project = thang.getJavaProject().getProject();
+			currentPackage = thang.getPath().toString();
 		}
+		
+		page.setPackageName(currentPackage.replace('/', '.'));
 	}
 
 	@Override

@@ -11,6 +11,8 @@ import org.eclipse.jface.wizard.IWizardPage;
  */
 public interface INewFileWizardPage extends IWizardPage {
 
+	void setPackageName(String path);
+	
 	String getPackage();
 
 	String getFileName();
