@@ -1,12 +1,11 @@
 package org.green4590.gbplugin.wizards.pages;
 
-import java.util.List;
-import java.util.Map;
+import org.green4590.gbplugin.file.project.ProjectType;
 
 public interface INewProjectWizardPage {
 	
 	String getName();
 	
-	List<Map<String, String>> getProperties();
+	ProjectType getSelection();
 	
 }

@@ -25,5 +25,10 @@ public class NewProjectWizard extends Wizard implements INewWizard {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
+	public boolean createProject(String projectName, ProjectType project){
+		
+		return true;
+	}
 
 }

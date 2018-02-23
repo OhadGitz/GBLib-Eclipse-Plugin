@@ -8,6 +8,7 @@ import org.eclipse.core.resources.IProject;
  *
  */
 interface ICreateableProjectType {
+	String getName();
 	IProject create(String projectName);
 }
 
@@ -17,6 +18,12 @@ public enum ProjectType implements ICreateableProjectType {
 		@Override
 		public IProject create(String projectName) {
 			return ProjectUtils.createProject(projectName);
+		}
+
+		@Override
+		public String getName() {
+			// TODO Auto-generated method stub
+			return "Empty project";
 		}
 		
 	},
@@ -28,6 +35,12 @@ public enum ProjectType implements ICreateableProjectType {
 			IProject project = ProjectUtils.createProject(projectName);
 			//project.cr
 			return null;
+		}
+
+		@Override
+		public String getName() {
+			// TODO Auto-generated method stub
+			return "Test robot project";
 		}
 		
 	};

@@ -82,18 +82,20 @@ class org.eclipse.jdt.internal.core.PackageFragmentRoot
 			IPackageFragment thing = (IPackageFragment) element;
 			project = thing.getJavaProject().getProject();
 			currentPackage = thing.getPath().toString();
+			
 		} else if (element instanceof IPackageFragmentRoot) {
 			// oooh thysti lil thang
 			IPackageFragmentRoot thang = (IPackageFragmentRoot) element;
 			project = thang.getJavaProject().getProject();
 			currentPackage = thang.getPath().toString();
+			
 		} else if (element instanceof ICompilationUnit) {
 			ICompilationUnit thang = (ICompilationUnit) element;
 			project = thang.getJavaProject().getProject();
-			currentPackage = thang.getPath().toString();
+			currentPackage = thang.getPath().removeLastSegments(1).toString();
 		}
 		
-		page.setPackageName(currentPackage.replace('/', '.'));
+		page.setPackageName(currentPackage.replace('/', '.').replaceFirst("." + project.getName() + ".src.", ""));
 	}
 
 	@Override
